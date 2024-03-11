@@ -1,0 +1,9 @@
+WorkoutPlanID,UserID,PlanName,StartDate,EndDate,ExerciseID,ExerciseName,DurationMinutes,CaloriesBurned
+1,1,Cardio Blast,'2024-01-01','2024-02-29',1,Running,30,300
+1,1,Cardio Blast,'2024-01-01','2024-02-29',2,Cycling,45,400
+2,2,Strength Training,'2024-03-01','2024-04-30',3,Weightlifting,60,250
+2,2,Strength Training,'2024-03-01','2024-04-30',4,Yoga,30,150
+3,3,Flexibility Focus,'2024-05-01','2024-06-30',5,Pilates,45,200
+3,3,Flexibility Focus,'2024-05-01','2024-06-30',6,Stretching,20,100
+4,4,Custom Workout,'2024-07-01','2024-08-31',7,Swimming,40,350
+4,4,Custom Workout,'2024-07-01','2024-08-31',8,Jump Rope,15,180

@@ -1,49 +1,50 @@
--- Inserts
-INSERT INTO food_details (protein, carb, fat, kcal)
-VALUES (1, 1, 1, 1);
+-- INSERT statements
+INSERT INTO Users (UserID, UserName, Age, Gender, Weight, Height) VALUES
+(5, 'Emma Johnson', 35, 'F', 62.0, 165.0),
+(6, 'Michael Smith', 45, 'M', 78.5, 178.2);
 
-INSERT INTO food_details (protein, carb, fat, kcal)
-VALUES (3, 2, 6, 400);
+INSERT INTO Foods (FoodID, FoodName, Calories, Proteins, Carbohydrates, Fats) VALUES
+(9, 'Greek Yogurt', 120, 15.0, 10.0, 2.0),
+(10, 'Mixed Nuts', 200, 8.0, 6.0, 16.0);
 
--- Updates
-UPDATE food_details
-SET protein = 5, carb = 4
-WHERE id = 1;
+-- UPDATE statements
+UPDATE DietPlans SET EndDate = '2024-03-31' WHERE DietPlanID = 1;
+UPDATE Exercises SET DurationMinutes = 40 WHERE ExerciseID = 3;
 
-UPDATE food_details
-SET protein = 5, carb = 4
-WHERE id = 2;
+-- DELETE statement
+DELETE FROM Cardio WHERE CardioID = 2;
 
--- Delete
-DELETE FROM food_details WHERE id = 4;
+-- Simple SELECT statement
+SELECT UserID, UserName, Age FROM Users WHERE Gender = 'F';
 
--- Simple Select
-SELECT protein FROM food_details;
+-- JOIN statements
+SELECT Users.UserName, DietPlans.PlanName
+FROM Users
+JOIN DietPlans ON Users.UserID = DietPlans.UserID;
 
--- Joins
-SELECT food_details.protein
-FROM food_details
-INNER JOIN exercise_details ON food_details.id = exercise_details.id;
+SELECT Meals.MealName, Foods.FoodName
+FROM Meals
+JOIN MealFoods ON Meals.MealID = MealFoods.MealID
+JOIN Foods ON MealFoods.FoodID = Foods.FoodID;
 
-SELECT food_details.carb
-FROM food_details
-INNER JOIN exercise_details ON food_details.id = exercise_details.id;
+-- Summary statements
+SELECT Gender, AVG(Weight) AS AverageWeight
+FROM Users
+GROUP BY Gender;
 
--- Summary
-SELECT AVG(protein)
-FROM food_details
-WHERE protein > 0;
+SELECT PlanName, COUNT(WorkoutPlanID) AS ExerciseCount
+FROM WorkoutPlans
+JOIN Exercises ON WorkoutPlans.WorkoutPlanID = Exercises.WorkoutPlanID
+GROUP BY PlanName;
 
-SELECT AVG(carb)
-FROM food_details
-WHERE carb <= 5;
+-- Multi-table query
+SELECT Users.UserName, DietPlans.PlanName, Meals.MealName, Foods.FoodName
+FROM Users
+JOIN DietPlans ON Users.UserID = DietPlans.UserID
+JOIN Meals ON DietPlans.DietPlanID = Meals.DietPlanID
+JOIN MealFoods ON Meals.MealID = MealFoods.MealID
+JOIN Foods ON MealFoods.FoodID = Foods.FoodID;
 
--- Mutli-Table Query
-
-
--- Choice Queries
-INSERT INTO food_details (protein, carb, fat, kcal)
-VALUES (6, 7, 5, 6);
-
-INSERT INTO food_details (protein, carb, fat, kcal)
-VALUES (3, 3, 3, 3);
+-- My choice
+INSERT INTO Exercises (ExerciseID, WorkoutPlanID, ExerciseName, DurationMinutes, CaloriesBurned)
+VALUES (9, 2, 'Circuit Training', 50, 300);
